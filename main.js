@@ -1,6 +1,6 @@
 const readLine = require('readline-sync');
 let trying = 1;
-//generate the random number
+
 function randomNumber() {
 	let number = Math.floor(Math.random() * 10);
 	return number
@@ -28,7 +28,8 @@ const length = String(secretNumber).length;
 
 console.log(`Загадане число містить ${length} цифри`);
 
-//function compare the generated and input numbers
+
+
 const getHint = (secret,guess) => {
 	let bulls = 0;
 	let cows = 0;
@@ -65,7 +66,7 @@ const getHint = (secret,guess) => {
 	return `Бики: ${bulls}; Корови: ${cows}.`;
 };
 
-//start the game!
+
 while (true) {
 
 	const query = readLine.question("Спроба: ");
