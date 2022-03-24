@@ -28,13 +28,20 @@ const length = String(secretNumber).length;
 console.log(`Загадане число містить ${length} цифри`);
 
 //function compare the generated and input numbers
-
 const getHint = (secret,guess) => {
 	let bulls = 0;
 	let cows = 0;
-    if(guess.length > 4 || guess.length < 4){
-        return `4 цифри потірбно, у вас ${guess.length}`;
-    }
+	let playerNumber = parseInt(guess)
+	if (!parseInt(guess)) {
+		return 'Введіть число'
+	}
+	if (guess[0] == 0) {
+		return 'Число не може розпочинатись із "0"'
+	}
+	if (guess.length > 4 || guess.length < 4) {
+		return `4 цифри потірбно, у вас ${guess.length}`;
+	}
+
 	const secretArr = String(secret).split('').map(elem => +elem);
 	const guessArr = guess.split('').map(elem => +elem);
 
@@ -47,7 +54,6 @@ const getHint = (secret,guess) => {
 		else i += 1;
 	}
 
-
 	for (let j = 0; j <= guessArr.length; j++) {
 		if (secretArr.includes(guessArr[j])) {
 			cows += 1;
@@ -55,17 +61,7 @@ const getHint = (secret,guess) => {
 		}
 	}
 
-
-for (let j = 0; j <= guessArr.length; j++) {
-    if (secretArr.includes(guessArr[j])) {
-        cows += 1;
-        secretArr.splice(secretArr.indexOf(guessArr[j]), 1);
-    }
-}
-
-    return `Бики: ${bulls}; Корови: ${cows}.`;
-
-
+	return `Бики: ${bulls}; Корови: ${cows}.`;
 };
 
 //start the game!
