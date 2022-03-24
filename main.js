@@ -1,4 +1,5 @@
 const readLine = require('readline-sync');
+let trying = 1;
 //generate the random number
 function randomNumber(){
     let number= Math.floor(Math.random()*10);
@@ -24,13 +25,15 @@ function computerNumber(){
 const secretNumber = parseInt(computerNumber());
 console.log(secretNumber);
 const length = String(secretNumber).length;
-console.log(`My guessed number contains ${length} digits`);
+console.log(`Загадане число містить ${length} цифри`);
 
 //function compare the generated and input numbers
 const getHint = (secret, guess) => {
-
 let bulls = 0;
 let cows = 0;
+if(guess.length > 4 || guess.length < 4){
+    return `4 цифри потірбно, у вас ${guess.length}`;
+}
 const secretArr = String(secret).split('').map(elem => +elem);
 const guessArr = guess.split('').map(elem => +elem);
 
@@ -49,17 +52,18 @@ for (let j = 0; j <= guessArr.length; j++) {
         secretArr.splice(secretArr.indexOf(guessArr[j]), 1);
     }
 }
-    return `У вашому числі ${bulls} биків та ${cows} корів`;
+
+    return `Бики: ${bulls}; Корови: ${cows}.`;
 };
 
 //start the game!
 while (true) {
 
-const query = readLine.question("Уведіть ваше число: ");
+const query = readLine.question("Спроба: ");
   if (+query === secretNumber) {
-    console.log(`Ви виграли це і правда число ${secretNumber}`);
+    console.log(`Це правильне число! Спроб ${trying}`);
     break;
   }
-
+trying++;
 console.log(`${getHint(secretNumber, query)}`);
 };
