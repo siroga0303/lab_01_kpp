@@ -1,17 +1,20 @@
 const readLine = require('readline-sync');
 //generate the random number
 function randomNumber(){
-    var number= Math.floor(Math.random()*10);
+    let number= Math.floor(Math.random()*10);
     return number
     }
 function computerNumber(){
-        var fourth= randomNumber();
-        for (var i;i=1;i++) {
-            var third= randomNumber();
-            var second= randomNumber();
-            var first= randomNumber();
+        let fourth= randomNumber();
+        if(fourth == 0){
+            fourth= randomNumber();
+        }
+        for (let i;i=1;i++) {
+            let third= randomNumber();
+            let second= randomNumber();
+            let first= randomNumber();
             if(third!=fourth && second!=fourth && second!=third && first!=fourth && first!=third && first!=second){
-                var rnd=fourth.toString()+third.toString()+second.toString()+first.toString();
+                let rnd=fourth.toString()+third.toString()+second.toString()+first.toString();
                 console.log(rnd);
         return rnd;
             }
@@ -46,15 +49,15 @@ for (let j = 0; j <= guessArr.length; j++) {
         secretArr.splice(secretArr.indexOf(guessArr[j]), 1);
     }
 }
-    return `in your number ${bulls} bulls and ${cows} cows`;
+    return `У вашому числі ${bulls} биків та ${cows} корів`;
 };
 
 //start the game!
 while (true) {
 
-const query = readLine.question("input your number: ");
+const query = readLine.question("Уведіть ваше число: ");
   if (+query === secretNumber) {
-    console.log(`you win! number what i guess is really ${secretNumber}`);
+    console.log(`Ви виграли це і правда число ${secretNumber}`);
     break;
   }
 
